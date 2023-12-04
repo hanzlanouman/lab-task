@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native';
+
+import { createStackNavigator } from '@react-navigation/stack';
+import ShowData from './src/screens/ShowData';
+import Input from './src/screens/Input';
+import DetailData from './src/screens/DetailData';
+import DataNavigation from './src/screens/ShowData';
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName='All Data'>
+        <Tab.Screen
+          name='All Data'
+          component={DataNavigation}
+          options={{
+            headerShown: false,
+          }}
+        />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        <Tab.Screen name='Input Data' component={Input} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
