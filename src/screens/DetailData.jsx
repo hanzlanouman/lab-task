@@ -12,6 +12,7 @@ const DetailData = ({ navigation, route }) => {
 
   const handleDelete = async (name) => {
     await deleteData(name);
+    navigation.navigate('Show Data');
   };
 
   return (
